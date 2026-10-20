@@ -26,6 +26,29 @@ function validateForm(searchText) {
     return true;
 }
 
+//Hämta recept från API:et
+async function getRecipe(searchText) {
+    try {
+        const response = await fetch("https://dummyjson.com/recipes/search?q=" + encodeURIComponent(searchText));
+
+        //Kontrollera att API-anropet funkar
+        if (!response.ok) {
+            throw new Error("Kunde inte hämta recept");
+        }
+
+        //API från JSON
+        const data = await response.json();
+
+        //Testar om data hämtas 
+        console.log(data);
+
+    } catch (error) {
+        console.log(`Det blev ett fel: ${error.message}`);
+        messageEl.textContent = "Kunde inte hämta recept. Försök igen senare";
+
+    }
+}
+
 // Hanterar formuläret när användaren söker
 function onSubmit(event) {
     event.preventDefault();
@@ -36,13 +59,14 @@ function onSubmit(event) {
     // Validera formuläret
     const validate = validateForm(searchText);
 
-    // Om formuläret är giltigt, hämta receptet
+    // Avbryt om sökfältet är tomt
     if (validate === false) {
         return;
     }
 
-    // Testar om sökfrasen hämtas
-    console.log(searchText);
+    // Rensa tidigare meddelanden och hämta recept
+    messageEl.textContent = "";
+    getRecipe(searchText);
 
 }
 
