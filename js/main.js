@@ -42,7 +42,7 @@ async function getRecipe(searchText) {
         // Testar om data hämtas
         console.log(data);
         // Visa det första receptet på listan
-        if(data.recipes.length > 0) {
+        if (data.recipes.length > 0) {
             displayRecipe(data.recipes[0]);
         }
 
@@ -73,6 +73,34 @@ function displayRecipe(recipe) {
     recipeImage.src = recipe.image;
     recipeImage.alt = recipe.name;
     article.appendChild(recipeImage);
+
+    // Skapa ett div-element för receptinfo
+    const recipeInfo = document.createElement("div");
+    recipeInfo.className = "recipe-info";
+
+    // Visa antal portioner
+    const servingsEl = document.createElement("p");
+    servingsEl.textContent = `Servings: ${recipe.servings}`;
+
+    // Visa förberedelsetid
+    const prepTimeEl = document.createElement("p");
+    prepTimeEl.textContent = `Prep time: ${recipe.prepTimeMinutes} minutes`;
+
+    // Visa tillagningstid
+    const cookingTimeEl = document.createElement("p");
+    cookingTimeEl.textContent = `Cooking time: ${recipe.cookTimeMinutes} minutes`;
+
+    // Visa svårighetsgrad
+    const difficultyEl = document.createElement("p");
+    difficultyEl.textContent = `Difficulty: ${recipe.difficulty}`;
+
+     // Lägg till informationen i receptet
+    recipeInfo.appendChild(servingsEl);
+    recipeInfo.appendChild(prepTimeEl);
+    recipeInfo.appendChild(cookingTimeEl);
+    recipeInfo.appendChild(difficultyEl);
+
+    article.appendChild(recipeInfo);
 
     // Visa receptet
     recipeEl.appendChild(article);
