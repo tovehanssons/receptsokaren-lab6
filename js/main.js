@@ -58,10 +58,10 @@ function displayRecipe(recipe) {
     // Rensa tidigare recept
     recipeEl.innerHTML = "";
 
-    // Skapa ett element för receptet
+    // Element för receptet
     const article = document.createElement("article");
 
-    // Skapa ett element för receptets namn
+    // Element för receptets namn
     const recipeName = document.createElement("h3");
     recipeName.textContent = recipe.name;
 
@@ -74,7 +74,7 @@ function displayRecipe(recipe) {
     recipeImage.alt = recipe.name;
     article.appendChild(recipeImage);
 
-    // Skapa ett div-element för receptinfo
+    // Div-element för receptinfo
     const recipeInfo = document.createElement("div");
     recipeInfo.className = "recipe-info";
 
@@ -94,7 +94,7 @@ function displayRecipe(recipe) {
     const difficultyEl = document.createElement("p");
     difficultyEl.textContent = `Difficulty: ${recipe.difficulty}`;
 
-    // Lägg till informationen i receptet
+    // Lägger till informationen i receptet
     recipeInfo.appendChild(servingsEl);
     recipeInfo.appendChild(prepTimeEl);
     recipeInfo.appendChild(cookingTimeEl);
@@ -105,7 +105,7 @@ function displayRecipe(recipe) {
     // Visa ingredienser
     const ingredientsEl = document.createElement("h4");
     ingredientsEl.textContent = "Ingredients";
-    //Lägg till i receptet 
+    //Lägger till i receptet 
     article.appendChild(ingredientsEl);
 
     // Skapa en lista för ingredienser
@@ -118,8 +118,28 @@ function displayRecipe(recipe) {
         ingredientsList.appendChild(ingredientEl);
     }
 
-    // Lägg till listan för ingredienser i receptet
+    // Lägger till listan för ingredienser i receptet
     article.appendChild(ingredientsList);
+
+    // Visa instruktioner
+    const instructionsEl = document.createElement("h4");
+    instructionsEl.textContent = "Instructions";
+
+    // Lägger till instruktioner i receptet
+    article.appendChild(instructionsEl);
+
+    //En for-loop som går igenom instruktionerna i rätt ordning
+    const instructionsList = document.createElement("ol");
+
+    for (let i = 0; i < recipe.instructions.length; i++) {
+        const instructionEl = document.createElement("li");
+        instructionEl.textContent = recipe.instructions[i];
+        instructionsList.appendChild(instructionEl);
+
+    }
+
+    // Lägger till instruktionslistan i receptet
+    article.appendChild(instructionsList);
 
     // Visa receptet
     recipeEl.appendChild(article);
