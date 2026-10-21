@@ -94,13 +94,32 @@ function displayRecipe(recipe) {
     const difficultyEl = document.createElement("p");
     difficultyEl.textContent = `Difficulty: ${recipe.difficulty}`;
 
-     // Lägg till informationen i receptet
+    // Lägg till informationen i receptet
     recipeInfo.appendChild(servingsEl);
     recipeInfo.appendChild(prepTimeEl);
     recipeInfo.appendChild(cookingTimeEl);
     recipeInfo.appendChild(difficultyEl);
 
     article.appendChild(recipeInfo);
+
+    // Visa ingredienser
+    const ingredientsEl = document.createElement("h4");
+    ingredientsEl.textContent = "Ingredients";
+    //Lägg till i receptet 
+    article.appendChild(ingredientsEl);
+
+    // Skapa en lista för ingredienser
+    const ingredientsList = document.createElement("ul");
+
+    // En for-loop som går igenom alla ingredienser
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+        const ingredientEl = document.createElement("li");
+        ingredientEl.textContent = recipe.ingredients[i];
+        ingredientsList.appendChild(ingredientEl);
+    }
+
+    // Lägg till listan för ingredienser i receptet
+    article.appendChild(ingredientsList);
 
     // Visa receptet
     recipeEl.appendChild(article);
