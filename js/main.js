@@ -44,6 +44,8 @@ async function getRecipe(searchText) {
         // Visa det första receptet på listan
         if (data.recipes.length > 0) {
             displayRecipe(data.recipes[0]);
+        } else {
+            messageEl.textContent = "Inga recept hittades. Prova en annan sökfras.";
         }
 
     } catch (error) {
@@ -152,6 +154,9 @@ function onSubmit(event) {
     // Läs in sökfrasen från formuläret
     const searchText = searchInput.value.trim();
 
+    //Rensa tidigare meddelanden
+    messageEl.textContent = "";
+
     // Validera formuläret
     const validate = validateForm(searchText);
 
@@ -160,8 +165,10 @@ function onSubmit(event) {
         return;
     }
 
-    // Rensa tidigare meddelanden och hämta recept
-    messageEl.textContent = "";
+    // Rensa tidigare recept
+    recipeEl.innerHTML = "";
+
+    //Hämta recept
     getRecipe(searchText);
 
 }
