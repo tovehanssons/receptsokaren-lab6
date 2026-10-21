@@ -68,6 +68,12 @@ function displayRecipe(recipe) {
     // Lägger till receptnamnet
     article.appendChild(recipeName);
 
+    //Bild för receptet
+    const recipeImage = document.createElement("img");
+    recipeImage.src = recipe.image;
+    recipeImage.alt = recipe.name;
+    article.appendChild(recipeImage);
+
     // Visa receptet
     recipeEl.appendChild(article);
 }
