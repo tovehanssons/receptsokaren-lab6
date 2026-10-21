@@ -39,8 +39,6 @@ async function getRecipe(searchText) {
         // API från JSON
         const data = await response.json();
 
-        // Testar om data hämtas
-        console.log(data);
         // Visa det första receptet på listan
         if (data.recipes.length > 0) {
             displayRecipe(data.recipes[0]);
@@ -50,7 +48,7 @@ async function getRecipe(searchText) {
 
     } catch (error) {
         console.log(`Det blev ett fel: ${error.message}`);
-        messageEl.textContent = "Kunde inte hämta recept. Försök igen senare";
+        messageEl.textContent = "Kunde inte hämta recept. Försök igen senare.";
 
     }
 }
